@@ -26,10 +26,12 @@ jobs:
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
 
-      - name: Install packages
-        shell: Rscript {0}
-        run: |
-          install.packages(c("shiny", "shinylive"), repos = "https://cloud.r-project.org")
+      - name: Setup R Dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::shiny
+            any::shinylive
 
       - name: Export site
         shell: Rscript {0}
